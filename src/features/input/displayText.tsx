@@ -11,6 +11,9 @@ export const DisplayText = () => {
 
   const deleteTodo = (index: number) => {
     const newTodos = [...todoValue];
+    if (newTodos[index].isCompleted === false) {
+      alert("未完了のToDoを削除します。");
+    }
     newTodos.splice(index, 1);
     setTodoValue(newTodos);
   }
