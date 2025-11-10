@@ -5,6 +5,15 @@ export const InputContainer = () => {
 
   const onSubmit = (data: FormData) => {
     const formData = Object.fromEntries(data.entries());
+    const title = formData.title as string;
+
+    if (title === "" || title.trim() === "") {
+      return;
+    }
+
+    if (formData.indDate === ""){
+      formData.endDate = "なし";
+    }
 
     setTodoValue((prev) => [
       ...prev,
