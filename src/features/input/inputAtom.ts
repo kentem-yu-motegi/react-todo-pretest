@@ -4,6 +4,7 @@ import { atom, useAtomValue, useSetAtom } from "jotai";
 const todoAtom = atom<Array<Todo>>([]);
 
 type Todo = {
+  id: string;
   title: string;
   endDate: string;
   isCompleted: boolean;
