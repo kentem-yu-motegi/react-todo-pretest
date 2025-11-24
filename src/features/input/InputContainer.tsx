@@ -1,7 +1,7 @@
 import { useInputAtom } from "./inputAtom";
 
 export const InputContainer = () => {
-  const { todoValue, setTodoValue } = useInputAtom();
+  const { setTodoValue } = useInputAtom();
 
   const onSubmit = (data: FormData) => {
     const formData = Object.fromEntries(data.entries());
@@ -11,13 +11,14 @@ export const InputContainer = () => {
       return;
     }
 
-    if (formData.indDate === ""){
+    if (formData.endDate === ""){
       formData.endDate = "なし";
     }
 
     setTodoValue((prev) => [
       ...prev,
       {
+        id: crypto.randomUUID(),
         title: formData.title as string,
         endDate: formData.endDate as string,
         isCompleted: false,
