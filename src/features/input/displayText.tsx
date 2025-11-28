@@ -6,7 +6,6 @@ export const DisplayText = () => {
   const total = todoValue.length;
   const completed = todoValue.filter((todo) => todo.isCompleted).length;
   const uncompleted = total - completed;
-  
 
   const todoCompleted = (id: string) => {
     const newTodos = todoValue.map((todo) =>
@@ -19,8 +18,8 @@ export const DisplayText = () => {
     const target = todoValue.find((todo) => todo.id === id);
     if (!target) return;
 
-    if (!target.isCompleted) {
-      alert("未完了のToDoを削除します。");
+    if (!target.isCompleted && !confirm("未完了のタスクを削除しますか？")) {
+      return;
     }
 
     const newTodos = todoValue.filter((todo) => todo.id !== id);
@@ -35,7 +34,7 @@ export const DisplayText = () => {
         <span>未完了: {uncompleted}</span>
       </div>
       {todoValue.map((todo) => (
-        <div key={todo.id} className="flex items-center gap-2 border-b pb-2">
+        <div key={todo.id} className="flex items-center gap-2 border-b pb-2 flex-nowrap">
           <h2 className="text-2xl text-sky-700 font-bold">{todo.title}</h2>
           <span className="text-gray-500">締切: {todo.endDate}</span>
           <span className="text-gray-500">
