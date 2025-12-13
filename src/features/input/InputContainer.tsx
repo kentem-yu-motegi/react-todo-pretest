@@ -11,6 +11,15 @@ export const InputContainer = () => {
       return;
     }
 
+    if (formData.description === ""){
+      formData.description = "なし";
+    }
+
+    // 締切日のフォーマットをYYYY-MM-DDに変換
+    const rawEndDate = formData.endDate as string;
+    const endDate = rawEndDate ? new Date(rawEndDate).toISOString().slice(0, 10): "";
+
+
     if (formData.endDate === ""){
       formData.endDate = "なし";
     }
@@ -20,7 +29,8 @@ export const InputContainer = () => {
       {
         id: crypto.randomUUID(),
         title: formData.title as string,
-        endDate: formData.endDate as string,
+        description: formData.description as string,
+        endDate: endDate,
         isCompleted: false,
       },
     ]);
@@ -33,6 +43,12 @@ export const InputContainer = () => {
         type="text"
         className="p-2 border-2 border-slate-500 rounded"
       />
+      <textarea
+        name="description"
+        className="p-2 border-2 border-slate-500 rounded"
+        rows={4}
+      >
+      </textarea>
       <input
         name="endDate"
         type="date"

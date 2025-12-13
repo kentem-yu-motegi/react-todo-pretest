@@ -1,11 +1,13 @@
-import { atom, useAtomValue, useSetAtom } from "jotai";
+import { useAtomValue, useSetAtom } from "jotai";
+import { atomWithStorage } from "jotai/utils";
 
-// inputの状態を管理するatomを定義
-const todoAtom = atom<Array<Todo>>([]);
+// localStorage に保存される atom
+const todoAtom = atomWithStorage<Todo[]>("todos", []);
 
 type Todo = {
   id: string;
   title: string;
+  description: string;
   endDate: string;
   isCompleted: boolean;
 };
